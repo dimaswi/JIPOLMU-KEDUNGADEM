@@ -28,6 +28,7 @@ class BukuInduk extends Model
         'status_sosial',
         'ktp',
         'referal',
+        'tps',
     ];
 
     public function scopeSearch( $query, $value)

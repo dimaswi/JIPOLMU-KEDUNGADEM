@@ -34,6 +34,7 @@ class Peserta extends Component
     public $status;
     public $status_sosial;
     public $ktp;
+    public $tps;
     public $upline;
     public $idData;
     
@@ -49,7 +50,6 @@ class Peserta extends Component
     }
     public function save()
     {
-
         $result = DB::table('tb_buku_induk')->where('ktp' , $this->ktp)->first();
 
         if ($result != null) {
@@ -67,8 +67,6 @@ class Peserta extends Component
                     'domisili' => 'required',
                     'no_hp' => 'required',
                 ]);
-    
-    
     
                 BukuInduk::create([
                     'referal' => auth()->user()->name,
@@ -89,9 +87,8 @@ class Peserta extends Component
                     'status' => $this->status,
                     'status_sosial' => $this->status_sosial,
                     'ktp' => $this->ktp,
+                    'tps' => $this->tps,
                 ]);
-    
-    
     
                 $this->reset();
                 $this->sendAlert('success', 'Berhasil disimpan!!', 'top-end');
@@ -105,12 +102,9 @@ class Peserta extends Component
                     'no_hp' => 'required',
                 ]);
     
-    
                 $this->sendAlert('error', $th->getMessage(), 'top-end');
             }
         }
-
-        
     }
 
     public function edit($id)
@@ -140,6 +134,7 @@ class Peserta extends Component
         $this->pekerjaan = $peserta->pekerjaan;
         $this->no_hp = $peserta->no_hp;
         $this->upline = $peserta->referal;
+        $this->tps = $peserta->tps;
     }
 
 
@@ -177,6 +172,7 @@ class Peserta extends Component
                 'status' => $this->status,
                 'status_sosial' => $this->status_sosial,
                 'referal' => $this->upline,
+                'tps' => $this->tps,
             ]);
             $this->sendAlert('success', 'Berhasil diupdate!!', 'top-end');
         } catch (\Throwable $th) {

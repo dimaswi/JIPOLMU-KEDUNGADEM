@@ -2,36 +2,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <!-- Charts -->
-    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-       @if($months>1)
-         {{__('messages.performance')}}  {{$months}}  {{__('messages.mounths')}}
-        @else
-        {{__('messages.performance')}}  {{$months}}  {{__('messages.mounths')}}
-        @endif
-    </h2>
 
     <div class="grid gap-6 mb-8 md:grid-cols-2">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                {{__('Peserta')}} /  {{__('messages.users')}}
+                {{__('Relawan')}} /  {{__('Pemilih')}}
             </h4>
             <canvas id="line"></canvas>
             <div
                 class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400">
                 <!-- Chart legend -->
                 <div class="flex items-center">
-                    <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
-                    <span>  {{__('Peserta')}}</span>
+                    <span class="inline-block w-3 h-3 mr-1 bg-red-600 rounded-full"></span>
+                    <span>  {{__('Pemilih')}}</span>
                 </div>
                 <div class="flex items-center">
                     <span class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"></span>
-                    <span> {{__('messages.users')}}</span>
+                    <span> {{__('Relawan')}}</span>
                 </div>
             </div>
         </div>
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                {{__('messages.dispositives')}}
+                {{__('Platform')}}
             </h4>
             <canvas id="pie"></canvas>
             <div
@@ -39,7 +32,7 @@
                 <!-- Chart legend -->
                 <div class="flex items-center">
                     <span class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"></span>
-                    <span>Móvil</span>
+                    <span>Mobile</span>
                 </div>
                 <div class="flex items-center">
                     <span class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"></span>
@@ -60,7 +53,7 @@
        var impressions = @json($impressions);
        var users = @json($users);
        var pcs = @json($pcs);
-       var movils = @json($movils);
+       var mobile = @json($movils);
        var tablets = @json($tablets);
        /**
         * For usage, visit Chart.js docs https://www.chartjs.org/docs/latest/
@@ -71,18 +64,18 @@
            data: {
                labels: labels,
                datasets: [{
-                       label: 'Peserta ',
+                       label: 'Pemilih',
                        /**
                         * These colors come from Tailwind CSS palette
                         * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
                         */
-                       backgroundColor: '#0694a2',
-                       borderColor: '#0694a2',
+                       backgroundColor: '#fc0303',
+                       borderColor: '#fc0303',
                        data: impressions,
                        fill: false,
                    },
                    {
-                       label: 'Users',
+                       label: 'Relawan',
                        fill: false,
                        /**
                         * These colors come from Tailwind CSS palette
@@ -143,7 +136,7 @@ const pieConfig = {
  data: {
    datasets: [
      {
-       data: [movils, pcs, tablets],
+       data: [mobile, pcs, tablets],
        /**
         * These colors come from Tailwind CSS palette
         * https://tailwindcss.com/docs/customizing-colors/#default-color-palette
@@ -152,7 +145,7 @@ const pieConfig = {
        label: 'Dataset 1',
      },
    ],
-   labels: ['Móvil', 'PC', 'Tablet'],
+   labels: ['Mobile', 'PC', 'Tablet'],
  },
  options: {
    responsive: true,
