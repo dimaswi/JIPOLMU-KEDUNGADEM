@@ -46,8 +46,6 @@ Route::get('/admin/bagian', App\Http\Livewire\Master\KepalaBagian::class)->name(
 Route::get('/admin/role', App\Http\Livewire\Master\Roles::class)->name('admin_roles')->middleware('admin');
 Route::get('/admin/permission', App\Http\Livewire\Master\Permissions::class)->name('admin_permission')->middleware('admin');
 Route::get('/admin/peserta', App\Http\Livewire\Peserta\Peserta::class)->name('admin_peserta')->middleware('admin');
-Route::get('/admin/downline', App\Http\Livewire\Peserta\Downline::class)->name('admin_downline')->middleware('admin');
-Route::get('/admin/downline/pemilih/{id}', App\Http\Livewire\Peserta\DownlineRelawan::class)->name('admin_downline_relawan')->middleware('admin');
 Route::get('/notifications', App\Http\Livewire\CentralNotificationsLivewire::class)->name('central_notifications')->middleware('auth');
 Route::get('/tickets', App\Http\Livewire\TicketsLivewire::class)->name('tickets')->middleware('auth');
 

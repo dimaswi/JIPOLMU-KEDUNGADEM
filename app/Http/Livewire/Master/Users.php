@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Master;
 
-use App\Exports\UsersExport;
 use App\Models\Admin;
 use App\Models\Bagian;
 use App\Models\Unit;
@@ -11,7 +10,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Facades\Excel;
+
 
 class Users extends Component
 {
@@ -79,7 +78,7 @@ class Users extends Component
         $this->idData = $user->id;
         $this->name = $user->name;
         $this->username = $user->username;
-        $this->no_hp = $user->phone;
+        $this->phone = $user->phone;
         $this->status = $user->status;
         $this->role = $user->role;
         $this->referal = $user->referal;
@@ -133,10 +132,5 @@ class Users extends Component
             'showCancelButton' =>  false,
             'showConfirmButton' =>  false,
         ]);
-    }
-
-    public function export()
-    {
-        return Excel::download(new UsersExport, 'username.xlsx');
     }
 }

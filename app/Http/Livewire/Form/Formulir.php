@@ -30,8 +30,6 @@ class Formulir extends Component
     public $status;
     public $status_sosial;
     public $ktp;
-    public $upline;
-    public $tps;
     public function render()
     {
         return view('livewire.form.formulir', [
@@ -61,6 +59,7 @@ class Formulir extends Component
                 ]);
     
                 BukuInduk::create([
+                    'referal' => auth()->user()->name,
                     'no_register' => str_pad($last_no_register->no_register + 1, 6, '0', STR_PAD_LEFT),
                     'nama' => $this->nama,
                     'kelamin' => $this->kelamin,
@@ -78,9 +77,9 @@ class Formulir extends Component
                     'status' => $this->status,
                     'status_sosial' => $this->status_sosial,
                     'ktp' => $this->ktp,
-                    'referal' => $this->upline,
-                    'tps' => $this->tps,
                 ]);
+    
+    
     
                 $this->reset();
                 $this->sendAlert('success', 'Berhasil disimpan!!', 'top-end');

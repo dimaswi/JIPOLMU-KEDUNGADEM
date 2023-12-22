@@ -27,8 +27,7 @@ class StatsGeneralLivewire extends Component
     public $pcs;
 
     public $tablets;
-    public $total_relawan;
-    public $total_pemilih;
+
     public $movils;
 
     public function render()
@@ -43,7 +42,6 @@ class StatsGeneralLivewire extends Component
 
     public function getStats()
     {
-        $relawan = User::where('referal', auth()->user()->name)->pluck('name');
         $thisMonth = now()->subMonth(1);
         //Array of months
         $arrayMonths = collect();
@@ -61,8 +59,8 @@ class StatsGeneralLivewire extends Component
         $pcs = 0;
         $tablets = 0;
         foreach ($arrayMonths as $month) {
-            $impression = BukuInduk::whereIn('referal', $relawan)->whereMonth('created_at', $month['number'])->count();
-            $user = User::where('referal', auth()->user()->name)->whereMonth('created_at', $month['number'])->count();
+            $impression = BukuInduk::whereMonth('created_at', $month['number'])->count();
+            $user = User::whereMonth('created_at', $month['number'])->count();
             $movil = Stat::where('dispositive', 'movil')->whereMonth('created_at', $month['number'])->count();
             $pc = Stat::where('dispositive', 'pc')->whereMonth('created_at', $month['number'])->count();
             $tablet = Stat::where('dispositive', 'tablet')->whereMonth('created_at', $month['number'])->count();
@@ -80,8 +78,5 @@ class StatsGeneralLivewire extends Component
         $this->pcs = $pcs;
         $this->tablets = $tablets;
         $this->movils = $movils;
-        $this->total_relawan = User::where('referal', auth()->user()->name)->get()->count();
-        $relawan = User::where('referal', auth()->user()->name)->pluck('name');
-        $this->total_pemilih = BukuInduk::whereIn('referal', $relawan)->get()->count();
     }
 }

@@ -286,33 +286,6 @@
                 </div> --}}
             </div>
 
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                <div class="mb-3">
-                    <div>
-                        <label for=""
-                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Upline
-                            <span class="text-red-500">*</span></label>
-                        <input wire:model="upline" type="text" placeholder="Masukan Nama Koordinator/Relawan"
-                            class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                        @error('upline')
-                            <span class="text-red-300">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div>
-                        <label for=""
-                            class="block text-sm text-gray-700 capitalize dark:text-gray-200">Tempat Pemungutan Suara
-                            <span class="text-red-500">*</span></label>
-                        <input wire:model="tps" type="text" placeholder="Masukan Tempat Pemungutan Suara"
-                            class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-                        @error('tps')
-                            <span class="text-red-300">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-
             <div class="flex justify-end mt-6">
                 <button type="submit"
                     class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">

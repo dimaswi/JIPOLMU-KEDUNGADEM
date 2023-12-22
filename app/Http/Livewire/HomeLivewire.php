@@ -17,11 +17,11 @@ class HomeLivewire extends Component
     public $impresions;
 
     public $users;
+
     public $orders;
+
     public $invoices;
     public $peserta;
-    public $total_relawan;
-    public $total_pemilih;
 
     public function render()
     {
@@ -42,9 +42,5 @@ class HomeLivewire extends Component
             $this->orders = Order::where('user_id', Auth::id())->count();
             $this->invoices = Invoice::where('user_id', Auth::id())->count();
         }
-
-        $this->total_relawan = User::where('referal', auth()->user()->name)->get()->count();
-        $relawan = User::where('referal', auth()->user()->name)->pluck('name');
-        $this->total_pemilih = BukuInduk::whereIn('referal', $relawan)->get()->count();        
     }
 }
